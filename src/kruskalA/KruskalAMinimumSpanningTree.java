@@ -7,7 +7,7 @@ package kruskalA;
  * @author Dany
  *
  */
-public class KruskalBMinimumSpanningTree {
+public class KruskalAMinimumSpanningTree {
 
 	/**
 	 * @param args
