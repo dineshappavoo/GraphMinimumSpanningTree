@@ -9,8 +9,36 @@ is then a spanning tree with weight less than or equal to the weight of every ot
 undirected graph (not necessarily connected) has a minimum spanning forest, which is a union of minimum spanning trees 
 for its connected components.
 
+Boruvka Algorithm (1926) :
+The algorithm begins by first examining each vertex and adding the cheapest edge from that vertex to another in the graph, 
+without regard to already added edges, and continues joining these groupings in a like manner until a tree spanning all 
+vertices is completed.
 
-##List of Algorithms for undirected Graph and Complexity
+Kruskal A algorithm (1956):
+* create a forest F (a set of trees), where each vertex in the graph is a separate tree
+* create a set S containing all the edges in the graph
+    while S is nonempty and F is not yet spanning
+      * remove an edge with minimum weight from S
+      * if that edge connects two different trees, then add it to the forest, combining two trees into a single tree
+
+At the termination of the algorithm, the forest forms a minimum spanning forest of the graph. If the graph is connected, the forest has a single component and forms a minimum spanning tree.
+
+Kruskal B Algorithm :
+
+* create a forest F (a set of trees), where each vertex in the graph is a separate tree
+* create a set S containing all the edges in the graph
+    while S is nonempty and F is not yet spanning
+      * remove an edge with maximum weight from S and which is safe to remove
+      * if that edge connects two different trees, then add it to the forest, combining two trees into a single tree
+
+
+Prim–Jarník algorithm :
+
+* Initialize a tree with a single vertex, chosen arbitrarily from the graph.
+* Grow the tree by one edge: of the edges that connect the tree to vertices not yet in the tree, find the minimum-weight edge, and transfer it to the tree.
+* Repeat step 2 (until all vertices are in the tree).
+
+##Complexities
 
 	Improvement Algorithm - O(E log V)
 	Boruvka Algorithm     - O(|E| log |V|) for adjacency list
