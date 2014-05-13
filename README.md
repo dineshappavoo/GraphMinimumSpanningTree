@@ -32,7 +32,7 @@ At the termination of the algorithm, the forest forms a minimum spanning forest 
       * if that edge connects two different trees, then add it to the forest, combining two trees into a single tree
 
 
-###Prim–Jarnik algorithm :
+###Jarnik (1930) - Prim (1957) - Dijkstra (1959) algorithm :
 
 * Initialize a tree with a single vertex, chosen arbitrarily from the graph.
 * Grow the tree by one edge: of the edges that connect the tree to vertices not yet in the tree, find the minimum-weight edge, and transfer it to the tree.
