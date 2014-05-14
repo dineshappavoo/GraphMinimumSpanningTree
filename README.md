@@ -50,7 +50,7 @@ At the termination of the algorithm, the forest forms a minimum spanning forest 
 ##Install
 
 This library has the java implementation of Minimum Spanning Tree Algorithms to find the MST in a 
-undirected graph G=[V,E].The following code snippet shows how to get the shortest path,
+undirected graph G=[V,E].The following code snippet shows how to get the minimum spanning tree (MST),
 
 
 ###Input
