@@ -3,6 +3,8 @@
  */
 package prim;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import Boruvka.Graph;
@@ -45,5 +47,22 @@ public class PrimMinimumSpanningTree {
 		//graph.printGraph();
 
 	}
+	
+	public PriorityQueue<Integer> getMaxHeapPriorityQueue()
+	{
+		 PriorityQueue<Integer> queue = new PriorityQueue<Integer>(11, new Comparator<Integer>()
+		 {
+			 public int compare(Integer o1, Integer	 o2)
+			 {
+				 int p1=o1;
+				 int p2=o2;
+				 return (p2-p1); 
+				 }
+			 }
+		 );
+		 return queue;
+	}
+	
+	
 
 }
