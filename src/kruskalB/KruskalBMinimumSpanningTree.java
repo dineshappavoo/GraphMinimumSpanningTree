@@ -8,6 +8,9 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+import kruskalA.Edge;
+import kruskalA.KruskalAMinimumSpanningTree;
+
 
 /**
  * @author Dinesh Appavoo
@@ -24,7 +27,45 @@ public class KruskalBMinimumSpanningTree {
 	
 	public static void main(String[] args) {
 
+		KruskalBMinimumSpanningTree kruskalBMST=new KruskalBMinimumSpanningTree();
+		int mstWeight=kruskalBMST.getMSTWeight();
+		System.out.println(mstWeight);
+		ArrayList<Edge> primEdges=kruskalBMST.getMST();
+		
+		for(Edge e : primEdges)
+		{
+			System.out.println("u : "+e.u+" v : "+e.v+" w : "+e.w);
+		}
 	}
+	
+	/**
+	 * 
+	 * Method to MST edges
+	 * @return
+	 */
+	public ArrayList<Edge> getMST()
+	{
+		constructGraph();
+		findKruskalBMST(1);
+		return A;
+	}
+	
+	/**
+	 * 
+	 * Method to return MST total weight
+	 * @return
+	 */
+	public int getMSTWeight()
+	{
+		constructGraph();		
+		findKruskalBMST(1);
+		int totalWeight=0;
+		for(Edge e : A)
+		{
+			totalWeight+=(Integer)e.w;
+		}
+		return totalWeight;
+	} 
 	
 	/**
 	 * Method to construct the graph using adjacency list
@@ -95,10 +136,10 @@ public class KruskalBMinimumSpanningTree {
 	 *       B[m.v] <- true
 	 * 
 	 */	
-	public void findKruskalAMST(int source)
+	public void findKruskalBMST(int source)
 	{
 
-		mstNodes[source]=true;
+		B[source]=true;
 		ArrayList<Edge>[] adjacencyList = graph.getListOfAdjacencylist();
 		PriorityQueue<Edge> minHeap=getMaxHeapPriorityQueue();
 
@@ -119,10 +160,10 @@ public class KruskalBMinimumSpanningTree {
 		while(minHeap.peek()!=null)
 		{
 			Edge e1 = minHeap.poll();
-			if(!mstNodes[(Integer) e1.v])
+			if(!B[(Integer) e1.v])
 			{
-				minWeightEdges.add(e1);
-				mstNodes[(Integer) e1.v]=true;
+				A.add(e1);
+				B[(Integer) e1.v]=true;
 			}
 		}
 	}
