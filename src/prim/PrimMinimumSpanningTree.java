@@ -142,17 +142,17 @@ public class PrimMinimumSpanningTree {
 	 * @param source
 	 * 
 	 * MST_PRIM(G,w,source)
-	 *  A <- Empty
-	 *  B[source] <- true
-	 *  for each edge e adjacent to E(source)
-	 *      PQ <- PQ U e
-	 *  While (PQ.peek()!=null)
-	 *  	m<-PQ.poll()
-	 *      if(!B[m.v])
-	 *       	A <- A U m
-	 *       	B[m.v] <- true
-	 *       	for each edge e adjacent to E(m)
-	 *       		PQ <- PQ U e
+	 * 	A <- Empty
+	 * 	B[source] <- true
+	 * 	for each edge e adjacent to E(source)
+	 *		PQ <- PQ U e
+	 *	While (PQ.peek()!=null)
+	 *		m<-PQ.poll()
+	 *		if(!B[m.v])
+	 *			A <- A U m
+	 *			B[m.v] <- true
+	 *			for each edge e adjacent to E(m)
+	 *				PQ <- PQ U e
 	 * 
 	 */
 	

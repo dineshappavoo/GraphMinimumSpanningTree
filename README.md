@@ -62,22 +62,22 @@ At the termination of the algorithm, the forest forms a minimum spanning forest 
 * Repeat step 2 (until all vertices are in the tree)
 
 	 * MST_PRIM(G,w,source)
-	 *  A <- Empty
-	 *  B[source] <- true
-	 *  for each edge e adjacent to E(source)
-	 *  	PQ <- PQ U e
-	 *  While (PQ.peek()!=null)
-	 *  	m<-PQ.poll()
-	 *  	if(!B[m.v])
-	 *  		A <- A U m
-	 *  		B[m.v] <- true
-	 *  		for each edge e adjacent to E(m)
-	 *  			PQ <- PQ U e
+	 * 	A <- Empty
+	 * 	B[source] <- true
+	 * 	for each edge e adjacent to E(source)
+	 *		PQ <- PQ U e
+	 *	While (PQ.peek()!=null)
+	 *		m<-PQ.poll()
+	 *		if(!B[m.v])
+	 *			A <- A U m
+	 *			B[m.v] <- true
+	 *			for each edge e adjacent to E(m)
+	 *				PQ <- PQ U e
 
 ##Complexities
 
-	Improvement Algorithm - O(E log V)
-	Boruvka Algorithm     - O(|E| log |V|) for adjacency list
+	Improvement Algorithm - O(|E| log |V|)
+	Boruvka Algorithm     - O(|E| log |V|) using adjacency list
 	Kruskal A algorithm   - O(|E| log |V|)
 	Kruskal B Algorithm   - O(|E| log |V|)
 	Prim Algoritm         - O(|E| log |V|)
