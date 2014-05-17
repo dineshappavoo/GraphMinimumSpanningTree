@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
- * @author Dany
+ * @author Dinesh Appavoo
  *
  */
 public class KruskalAMinimumSpanningTree {
@@ -21,12 +21,16 @@ public class KruskalAMinimumSpanningTree {
 	public static boolean[] mstNodes=null;
 	public static ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
 
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		KruskalAMinimumSpanningTree kruskalAMST=new KruskalAMinimumSpanningTree();
-		int mstWeight=kruskalAMST.getKruskalAMinimumWeight();
+		int mstWeight=kruskalAMST.getMSTWeight();
 		System.out.println(mstWeight);
-		ArrayList<Edge> primEdges=kruskalAMST.getKruskalAMST();
+		ArrayList<Edge> primEdges=kruskalAMST.getMST();
 		
 		for(Edge e : primEdges)
 		{
@@ -35,14 +39,24 @@ public class KruskalAMinimumSpanningTree {
 
 	}
 	
-	public ArrayList<Edge> getKruskalAMST()
+	/**
+	 * 
+	 * Method to MST edges
+	 * @return
+	 */
+	public ArrayList<Edge> getMST()
 	{
 		constructGraph();
 		findKruskalAMST(1);
 		return minWeightEdges;
 	}
 	
-	public int getKruskalAMinimumWeight()
+	/**
+	 * 
+	 * Method to return MST total weight
+	 * @return
+	 */
+	public int getMSTWeight()
 	{
 		constructGraph();		
 		findKruskalAMST(1);
@@ -54,6 +68,10 @@ public class KruskalAMinimumSpanningTree {
 		return totalWeight;
 	} 
 
+	/**
+	 * Method to construct the graph using adjacency list
+	 * 
+	 */
 	public void constructGraph()
 	{
 
@@ -79,6 +97,13 @@ public class KruskalAMinimumSpanningTree {
 
 	}
 
+	/**
+	 * 
+	 * Method to return Minimum Heap
+	 * @return
+	 * 
+	 */
+	
 	public PriorityQueue<Edge> getMinHeapPriorityQueue()
 	{
 		PriorityQueue<Edge> queue = new PriorityQueue<Edge>(11, new Comparator<Edge>()
@@ -94,6 +119,24 @@ public class KruskalAMinimumSpanningTree {
 		return queue;
 	}
 
+	/**
+	 * Method to find MST using Kruskal A algorithm
+	 * @param source
+	 * 
+	 * MST_KRUSKAL_A(G,w,source)
+	 *  A <- Empty
+	 *  B[source] <- true
+	 *  for each edge e in E
+	 *      PQ <- PQ U e
+	 *  While (PQ.peek()!=null)
+	 *  	m<-PQ.poll()
+	 *      if(!B[m.v])
+	 *       A <- A U m
+	 *       B[m.v] <- true
+	 * 
+	 */
+	
+	
 	public void findKruskalAMST(int source)
 	{
 

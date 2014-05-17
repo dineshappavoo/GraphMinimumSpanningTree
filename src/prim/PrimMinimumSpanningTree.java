@@ -9,23 +9,45 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 /**
  * @author Dinesh Appavoo
+ * 
+ * 
+ *	 * Class to find MST using Prim algorithm
+	 * 
+	 * 
+	 * MST_PRIM(G,w,source)
+	 *  A <- Empty
+	 *  B[source] <- true
+	 *  for each edge e adjacent to E(source)
+	 *      PQ <- PQ U e
+	 *  While (PQ.peek()!=null)
+	 *  	m<-PQ.poll()
+	 *      if(!B[m.v])
+	 *       	A <- A U m
+	 *       	B[m.v] <- true
+	 *       	for each edge e adjacent to E(m)
+	 *       		PQ <- PQ U e
+ * 
  *
  */
+
 public class PrimMinimumSpanningTree {
 
 	public static int noOfVertices,noOfEdges;
 	public static Graph<Integer> graph=null;
 
-	public static ArrayList<Integer> minimumWeight=new ArrayList<Integer>();
-	public static boolean[] mstNodes=null;
-	public static ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
+	public static boolean[] B=null;
+	public static ArrayList<Edge> A=new ArrayList<Edge>();
 
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		PrimMinimumSpanningTree primMST=new PrimMinimumSpanningTree();
-		int mstWeight=primMST.getPrimMinimumWeight();
+		int mstWeight=primMST.getMSTWeight();
 		System.out.println(mstWeight);
-		ArrayList<Edge> primEdges=primMST.getPrimMST();
+		ArrayList<Edge> primEdges=primMST.getMST();
 		
 		for(Edge e : primEdges)
 		{
@@ -33,26 +55,39 @@ public class PrimMinimumSpanningTree {
 		}
 	}
 
-	public ArrayList<Edge> getPrimMST()
+	/**
+	 * 
+	 * Method to MST edges
+	 * @return
+	 */
+	public ArrayList<Edge> getMST()
 	{
 		constructGraph();
 		findPrimMST(1);
-		return minWeightEdges;
+		return A;
 	}
 	
-	public int getPrimMinimumWeight()
+	/**
+	 * 
+	 * Method to return MST total weight
+	 * @return
+	 */
+	public int getMSTWeight()
 	{
 		constructGraph();		
 		findPrimMST(1);
 		int totalWeight=0;
-		for(Edge e : minWeightEdges)
+		for(Edge e : A)
 		{
 			totalWeight+=(Integer)e.w;
 		}
 		return totalWeight;
 	}
 	
-	
+	/**
+	 * Method to construct the graph using adjacency list
+	 * 
+	 */
 	public void constructGraph()
 	{
 
@@ -63,7 +98,7 @@ public class PrimMinimumSpanningTree {
 			noOfVertices=scanner.nextInt();
 			noOfEdges=scanner.nextInt();
 
-			mstNodes=new boolean[noOfVertices+1];
+			B=new boolean[noOfVertices+1];
 
 			graph=new Graph<Integer>(noOfVertices);
 			for(int i=0;i<noOfEdges;i++)
@@ -80,7 +115,14 @@ public class PrimMinimumSpanningTree {
 
 	}
 
-	public PriorityQueue<Edge> getMaxHeapPriorityQueue()
+	
+	/**
+	 * 
+	 * Method to return Minimum Heap
+	 * @return
+	 * 
+	 */
+	public PriorityQueue<Edge> getMinHeapPriorityQueue()
 	{
 		PriorityQueue<Edge> queue = new PriorityQueue<Edge>(11, new Comparator<Edge>()
 				{
@@ -95,11 +137,30 @@ public class PrimMinimumSpanningTree {
 		return queue;
 	}
 
+	/**
+	 * Method to find MST using Prim algorithm
+	 * @param source
+	 * 
+	 * MST_PRIM(G,w,source)
+	 *  A <- Empty
+	 *  B[source] <- true
+	 *  for each edge e adjacent to E(source)
+	 *      PQ <- PQ U e
+	 *  While (PQ.peek()!=null)
+	 *  	m<-PQ.poll()
+	 *      if(!B[m.v])
+	 *       	A <- A U m
+	 *       	B[m.v] <- true
+	 *       	for each edge e adjacent to E(m)
+	 *       		PQ <- PQ U e
+	 * 
+	 */
+	
 	public void findPrimMST(int source)
 	{
-		mstNodes[source]=true;
+		B[source]=true;
 		ArrayList<Edge> adjList=graph.getOutEdges(source);
-		PriorityQueue<Edge> minHeap=getMaxHeapPriorityQueue();
+		PriorityQueue<Edge> minHeap=getMinHeapPriorityQueue();
 
 		for(Edge e : adjList)
 		{
@@ -110,10 +171,10 @@ public class PrimMinimumSpanningTree {
 		while(minHeap.peek()!=null)
 		{
 			Edge e1 = minHeap.poll();
-			if(!mstNodes[(Integer) e1.v])
+			if(!B[(Integer) e1.v])
 			{
-				minWeightEdges.add(e1);
-				mstNodes[(Integer) e1.v]=true;
+				A.add(e1);
+				B[(Integer) e1.v]=true;
 
 				ArrayList<Edge> outEdges = graph.getOutEdges((Integer) e1.v);
 				
