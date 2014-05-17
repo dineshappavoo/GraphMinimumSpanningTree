@@ -17,9 +17,8 @@ public class KruskalAMinimumSpanningTree {
 	public static int noOfVertices,noOfEdges;
 	public static Graph<Integer> graph=null;
 
-	public static ArrayList<Integer> minimumWeight=new ArrayList<Integer>();
-	public static boolean[] mstNodes=null;
-	public static ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
+	public static boolean[] B=null;
+	public static ArrayList<Edge> A=new ArrayList<Edge>();
 
 	/**
 	 * Main method for testing
@@ -48,7 +47,7 @@ public class KruskalAMinimumSpanningTree {
 	{
 		constructGraph();
 		findKruskalAMST(1);
-		return minWeightEdges;
+		return A;
 	}
 	
 	/**
@@ -61,7 +60,7 @@ public class KruskalAMinimumSpanningTree {
 		constructGraph();		
 		findKruskalAMST(1);
 		int totalWeight=0;
-		for(Edge e : minWeightEdges)
+		for(Edge e : A)
 		{
 			totalWeight+=(Integer)e.w;
 		}
@@ -82,6 +81,8 @@ public class KruskalAMinimumSpanningTree {
 			noOfVertices=scanner.nextInt();
 			noOfEdges=scanner.nextInt();
 
+			B=new boolean[noOfVertices];
+			
 			graph=new Graph<Integer>(noOfVertices);
 			for(int i=0;i<noOfEdges;i++)
 			{
@@ -140,7 +141,7 @@ public class KruskalAMinimumSpanningTree {
 	public void findKruskalAMST(int source)
 	{
 
-		mstNodes[source]=true;
+		B[source]=true;
 		ArrayList<Edge>[] adjacencyList = graph.getListOfAdjacencylist();
 		PriorityQueue<Edge> minHeap=getMinHeapPriorityQueue();
 
@@ -161,10 +162,10 @@ public class KruskalAMinimumSpanningTree {
 		while(minHeap.peek()!=null)
 		{
 			Edge e1 = minHeap.poll();
-			if(!mstNodes[(Integer) e1.v])
+			if(!B[(Integer) e1.v])
 			{
-				minWeightEdges.add(e1);
-				mstNodes[(Integer) e1.v]=true;
+				A.add(e1);
+				B[(Integer) e1.v]=true;
 			}
 		}
 	}
