@@ -2,6 +2,8 @@ package Boruvka;
 
 import java.util.ArrayList;
 
+import topologicalsorting.Edge;
+
 /**
  * @author Dinesh Appavoo
  *
@@ -83,6 +85,15 @@ public class Graph<T extends Comparable<T>>{
 				weight=(T) e.w;
 		}
 		return weight;
+	}
+	
+	/**
+	 * To return the array of adjacency list(Actually the graph)
+	 * @return
+	 */
+	public ArrayList<Edge>[] getListOfAdjacencylist()
+	{
+		return adjacencyList;
 	}
 	
 	public void printGraph()
