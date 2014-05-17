@@ -46,5 +46,8 @@ public class BoruvkaMinimumSpanningTree {
 		//graph.printGraph();
 
 	}
+	
+	
+	
 
 }
