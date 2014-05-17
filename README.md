@@ -59,20 +59,20 @@ At the termination of the algorithm, the forest forms a minimum spanning forest 
 
 * Initialize a tree with a single vertex, chosen arbitrarily from the graph.
 * Grow the tree by one edge: of the edges that connect the tree to vertices not yet in the tree, find the minimum-weight edge, and transfer it to the tree.
-* Repeat step 2 (until all vertices are in the tree).
+* Repeat step 2 (until all vertices are in the tree)
 
 	 * MST_PRIM(G,w,source)
 	 *  A <- Empty
 	 *  B[source] <- true
 	 *  for each edge e adjacent to E(source)
-	 *      PQ <- PQ U e
+	 *  	PQ <- PQ U e
 	 *  While (PQ.peek()!=null)
 	 *  	m<-PQ.poll()
-	 *      if(!B[m.v])
-	 *       	A <- A U m
-	 *       	B[m.v] <- true
-	 *       	for each edge e adjacent to E(m)
-	 *       		PQ <- PQ U e
+	 *  	if(!B[m.v])
+	 *  		A <- A U m
+	 *  		B[m.v] <- true
+	 *  		for each edge e adjacent to E(m)
+	 *  			PQ <- PQ U e
 
 ##Complexities
 
