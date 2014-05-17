@@ -3,12 +3,10 @@
  */
 package prim;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
-
-import Boruvka.Graph;
-
 /**
  * @author Dany
  *
@@ -17,6 +15,10 @@ public class PrimMinimumSpanningTree {
 
 	public static int noOfVertices,noOfEdges;
 	public static Graph<Integer> graph=null;
+	
+	public static ArrayList<Integer> minimumWeight=new ArrayList<Integer>();
+	public static boolean[] mstNodes=null;
+	ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -32,6 +34,8 @@ public class PrimMinimumSpanningTree {
 		{
 			noOfVertices=scanner.nextInt();
 			noOfEdges=scanner.nextInt();
+			
+			mstNodes=new boolean[noOfVertices+1];
 
 			graph=new Graph<Integer>(noOfVertices);
 			for(int i=0;i<noOfEdges;i++)
@@ -57,10 +61,26 @@ public class PrimMinimumSpanningTree {
 				 int p1=o1;
 				 int p2=o2;
 				 return (p2-p1); 
-				 }
+			 }
 			 }
 		 );
 		 return queue;
+	}
+	
+	public void findPrimMST(int startNode)
+	{
+		mstNodes[startNode]=true;
+		ArrayList<Edge> adjList=graph.getOutEdges(startNode);
+		PriorityQueue<Edge> minHeap=
+		for(Edge e:adjList)
+		{
+			if(!mstNodes[e.v])
+			{
+				mstNodes
+			}
+			
+			
+		}
 	}
 	
 	
