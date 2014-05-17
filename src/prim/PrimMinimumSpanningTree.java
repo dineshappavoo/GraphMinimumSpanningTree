@@ -18,7 +18,7 @@ public class PrimMinimumSpanningTree {
 
 	public static ArrayList<Integer> minimumWeight=new ArrayList<Integer>();
 	public static boolean[] mstNodes=null;
-	ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
+	public static ArrayList<Edge> minWeightEdges=new ArrayList<Edge>();
 
 	public static void main(String[] args) {
 
@@ -95,12 +95,11 @@ public class PrimMinimumSpanningTree {
 		return queue;
 	}
 
-	public void findPrimMST(int startNode)
+	public void findPrimMST(int source)
 	{
-		mstNodes[startNode]=true;
-		ArrayList<Edge> adjList=graph.getOutEdges(startNode);
+		mstNodes[source]=true;
+		ArrayList<Edge> adjList=graph.getOutEdges(source);
 		PriorityQueue<Edge> minHeap=getMaxHeapPriorityQueue();
-
 
 		for(Edge e : adjList)
 		{
@@ -114,6 +113,8 @@ public class PrimMinimumSpanningTree {
 			if(!mstNodes[(Integer) e1.v])
 			{
 				minWeightEdges.add(e1);
+				mstNodes[(Integer) e1.v]=true;
+
 				ArrayList<Edge> outEdges = graph.getOutEdges((Integer) e1.v);
 				
 				for(Edge ed : adjList)
