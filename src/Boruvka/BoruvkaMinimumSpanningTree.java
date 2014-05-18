@@ -8,12 +8,8 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-import kruskalA.Edge;
-import kruskalA.KruskalAMinimumSpanningTree;
-
-
 /**
- * @author Dany
+ * @author Dinesh Appavoo
  *
  */
 public class BoruvkaMinimumSpanningTree {
@@ -128,6 +124,7 @@ public class BoruvkaMinimumSpanningTree {
 	 *  A <- Empty
 	 *  B[source] <- true
 	 *  for each VERTEX v in V
+	 *  	PQ <- null
 	 *  	for each edge e adjacent to v in E
 	 *  		PQ <- PQ U e
 	 *  	While (PQ.peek()!=null)

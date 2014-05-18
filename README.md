@@ -18,6 +18,7 @@ vertices is completed.
 	 *  A <- Empty
 	 *  B[source] <- true
 	 *  for each VERTEX v in V
+	 *  	PQ <- null
 	 *  	for each edge e adjacent to v in E
 	 *  		PQ <- PQ U e
 	 *  	While (PQ.peek()!=null)
