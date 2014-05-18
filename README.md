@@ -61,6 +61,8 @@ At the termination of the algorithm, the forest forms a minimum spanning forest 
 * Grow the tree by one edge of the edges that connect the tree to vertices not yet in the tree, find the minimum-weight edge, and transfer it to the tree.
 * Repeat step 2 (until all vertices are in the tree)
 
+The algorithm is given below,
+
 	 * MST_PRIM(G,w,source)
 	 * 	A <- Empty
 	 * 	B[source] <- true
