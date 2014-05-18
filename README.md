@@ -94,22 +94,22 @@ undirected graph G=[V,E].The following code snippet shows how to get the minimum
 ####Boruvka Algorithm
 	BoruvkaMinimumSpanningTree BoruvkaMST=new BoruvkaMinimumSpanningTree();
 	int mstWeight=BoruvkaMST.getMSTWeight();
-	ArrayList<Edge> primEdges=BoruvkaMST.getMST();
+	ArrayList<Edge> gEdges=BoruvkaMST.getMST();
 	
 ####Kruskal A Algorithm
 	KruskalAMinimumSpanningTree kruskalAMST=new KruskalAMinimumSpanningTree();
 	int mstWeight=kruskalAMST.getMSTWeight();
-	ArrayList<Edge> primEdges=kruskalAMST.getMST();
+	ArrayList<Edge> gEdges=kruskalAMST.getMST();
 	
 ####Kruskal B Algorithm
 	KruskalBMinimumSpanningTree kruskalBMST=new KruskalBMinimumSpanningTree();
 	int mstWeight=kruskalBMST.getMSTWeight();
-	ArrayList<Edge> primEdges=kruskalBMST.getMST();
+	ArrayList<Edge> gEdges=kruskalBMST.getMST();
 	
 ####Prim Algorithm
 	PrimMinimumSpanningTree primMST=new PrimMinimumSpanningTree();
 	int mstWeight=primMST.getMSTWeight();
-	ArrayList<Edge> primEdges=primMST.getMST();
+	ArrayList<Edge> gEdges=primMST.getMST();
 
 
 
