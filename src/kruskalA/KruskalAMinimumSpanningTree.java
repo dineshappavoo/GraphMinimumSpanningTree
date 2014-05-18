@@ -29,9 +29,9 @@ public class KruskalAMinimumSpanningTree {
 		KruskalAMinimumSpanningTree kruskalAMST=new KruskalAMinimumSpanningTree();
 		int mstWeight=kruskalAMST.getMSTWeight();
 		System.out.println(mstWeight);
-		ArrayList<Edge> primEdges=kruskalAMST.getMST();
+		ArrayList<Edge> gEdges=kruskalAMST.getMST();
 		
-		for(Edge e : primEdges)
+		for(Edge e : gEdges)
 		{
 			System.out.println("u : "+e.u+" v : "+e.v+" w : "+e.w);
 		}

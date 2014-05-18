@@ -26,9 +26,9 @@ public class BoruvkaMinimumSpanningTree {
 		BoruvkaMinimumSpanningTree BoruvkaMST=new BoruvkaMinimumSpanningTree();
 		int mstWeight=BoruvkaMST.getMSTWeight();
 		System.out.println(mstWeight);
-		ArrayList<Edge> primEdges=BoruvkaMST.getMST();
+		ArrayList<Edge> gEdges=BoruvkaMST.getMST();
 		
-		for(Edge e : primEdges)
+		for(Edge e : gEdges)
 		{
 			System.out.println("u : "+e.u+" v : "+e.v+" w : "+e.w);
 		}
