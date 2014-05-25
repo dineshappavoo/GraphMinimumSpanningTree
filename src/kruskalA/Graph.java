@@ -2,8 +2,6 @@ package kruskalA;
 
 import java.util.ArrayList;
 
-import topologicalsorting.Edge;
-
 /**
  * @author Dinesh Appavoo
  *
