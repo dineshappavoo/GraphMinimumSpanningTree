@@ -2,7 +2,6 @@ package graphutil;
 
 import java.util.ArrayList;
 
-import topologicalsorting.Edge;
 
 /**
  * @author Dinesh Appavoo
