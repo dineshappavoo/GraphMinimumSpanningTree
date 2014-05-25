@@ -1,122 +1,181 @@
+/**
+ * 
+ */
 package directedmst;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
- * @author Dinesh Appavoo
+ * @author Dany
  *
  */
-public class Graph<T extends Comparable<T>>{
+public class Graph {
 
 	
-	public static ArrayList<Edge>[] adjacencyList=null;
-	public int noOfVertices;
-	
-	
-	public Graph(int noOfVertices)
+	ArrayList<Edge>[] adjList;
+	//Constructor to create graph class by passing no of vertices and add values to graph in the calling class
+	public Graph(int noOfVertice)
 	{
-		adjacencyList=(ArrayList<Edge>[])new ArrayList[noOfVertices+1];
-		this.noOfVertices=noOfVertices;
+		this.adjList=(ArrayList<Edge>[])new ArrayList[noOfVertice+1];
+	}
+	//Constructor to create and add values to the graph by passing the input file
+	public Graph(String inFile)
+	{
+		this.constructGraph(inFile);
 	}
 
-	/**
-	 * 
-	 * @param u
-	 * @param v
-	 * @param w
-	 * To add edges to the adjacency list graph
-	 */
-	public void addEdge(T u, T v, T w)
+	public void addEdge(int u, int v, int w)
 	{
-		if(adjacencyList[(Integer) u]==null)
-			adjacencyList[(Integer) u]=new ArrayList<Edge>();
-		adjacencyList[(Integer) u].add(new Edge(u, v, w));
+		if(adjList[u]==null)
+		adjList[u]=new ArrayList<Edge>();
+		Edge edge = new Edge(u, v, w);
+		adjList[u].add(edge);
 	}
 	
-	/**
-	 * 
-	 * @param u
-	 * @param v
-	 * To remove the edge from the graph
-	 */
-	public void removeEdge(T u, T v)
+	public void removeEdge(int u, int v)
 	{
-		int indexToBeRemoved=-1;
-		ArrayList<Edge> edgeList=adjacencyList[(Integer) u];
-		for(int i=0;i<adjacencyList[(Integer) u].size();i++)
+		int indexTobeRemoved=-1;
+		for(int i=0;i<adjList[u].size();i++)
 		{
-			Edge e=edgeList.get(i);
-			if(e.u.compareTo(u)==0&&e.v.compareTo(v)==0)
-			{
-				indexToBeRemoved=i;
-			}
+			if(v==adjList[u].get(i).v)
+				indexTobeRemoved=i;
 		}
-		edgeList.remove(indexToBeRemoved);
+		if(indexTobeRemoved!=-1)
+		{
+			adjList[u].remove(indexTobeRemoved);
+		}
 	}
 	
-	/**
-	 * 
-	 * @param u
-	 * @return
-	 * To return the outgoing edges for the given source
-	 */
+	public boolean hasEdge(int u, Edge e)
+	{
+		return adjList[u].contains(e);
+	}
+	
 	public ArrayList<Edge> getOutEdges(int u)
 	{
-		return adjacencyList[u];
+		return adjList[u];
 	}
-	
-	/**
-	 * 
-	 * @param u
-	 * @param v
-	 * @return
-	 * To get the weight given the u and v values
-	 * 
-	 */
-	public T getWeight(int u, int v)
+	public ArrayList<Edge> getInEdges(int v, int noOfVertice)
 	{
-		ArrayList<Edge> edgeList=adjacencyList[u];
-		T weight = null;
-		for(Edge e : edgeList)
+		ArrayList<Edge> inEdges=new ArrayList<Edge>();
+		for(int i=1;i<=noOfVertice;i++)
 		{
-			if(e.v.compareTo(v)==0)
-				weight=(T) e.w;
+			ArrayList<Edge> adjList=getOutEdges(i);
+			if(adjList!=null)
+			{
+			for(Edge e: adjList)
+			{
+				if(e.v==v)
+					inEdges.add(e);
+					
+			}
+			}
+			
 		}
-		return weight;
+		return inEdges;
 	}
 	
+	public int findWeightWithUandV(int u , int v)
+	{
+		ArrayList<Edge> outList=adjList[u];
+		for(Edge e : outList)
+		{
+			if(e.v==v)
+			{
+				return e.w;
+			}
+		}
+		return -1;
+	}
+	
+	public int finTotalWeight(int noOfVertice)
+	{
+		//int noOfVertice=adjList.length;
+		int totalWeight=0;
+		
+		for(int i=1;i<=noOfVertice;i++)
+		{
+			ArrayList<Edge> adj=adjList[i];
+			if(adj!=null)
+			{
+			for(Edge e: adj)
+			{
+				totalWeight+=e.w;
+					
+			}
+			}
+			
+		}
+		return totalWeight;
+	}
+	
+	public void constructGraph(String inFile)
+	{
+		File infile=new File(inFile);
+		int noOfVertices=0;
+		int noOfEdges=0;
+		int arrLen=0;
+		try {
+			Scanner scanner=new Scanner(infile);
+			noOfVertices=scanner.nextInt();
+			noOfEdges=scanner.nextInt();
+			this.adjList=(ArrayList<Edge>[])new ArrayList[noOfVertices+1];
+			for(int i=0;i<noOfEdges;i++)
+			addEdge(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
+			//printGraph();
+	
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void printGraph()
 	{
-		ArrayList<Edge> edgeList;
-		for(int i=1;i<=noOfVertices;i++)
+		int k=0;
+		for(ArrayList<Edge> edgeList : adjList)
 		{
-			edgeList=adjacencyList[i];
+			System.out.println("Level No :"+k++);
 			if(edgeList!=null)
 			{
 			for(Edge e : edgeList)
-				System.out.println("u : "+e.u+" v : "+e.v+" w : "+e.w);
+			{
+				System.out.println("u  :"+e.u+" v  :"+e.v+" w  :"+e.w);
+			}
 			}
 		}
 	}
-	/**
-	 * 
-	 * @param args
-	 * Main function to test the graph
-	 */
-	public static void main(String[] args) {
+	
+	
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		Graph<Integer> graph=new Graph<Integer>(3);
-		graph.addEdge(1, 2, 5);
-		graph.addEdge(1, 3, 12);
-		graph.addEdge(3, 1, 12);
-		graph.addEdge(2, 1, 5);
-		graph.addEdge(2, 3, 7);
-		graph.addEdge(3, 2, 7);
-		graph.printGraph();
+		File infile=new File("/users/dany/downloads/suma.txt");
+		int noOfVertices=0;
+		int noOfEdges=0;
+		int arrLen=0;
+		try {
+			Scanner scanner=new Scanner(infile);
+			noOfVertices=scanner.nextInt();
+			noOfEdges=scanner.nextInt();
+			Graph graph=new Graph(noOfVertices);
+			for(int i=0;i<noOfEdges;i++)
+			graph.addEdge(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
+			graph.printGraph();
+	
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+
 	}
-	
-	
+*/
+	public static void main(String[] args) {
+		
+		Graph graph=new Graph("/users/dany/downloads/suma.txt");
+		graph.printGraph();
+	}
 
 }
