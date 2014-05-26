@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 /**
- * @author Dany
+ * @author Dinesh Appavoo
  *
  */
 public class MSTDirectedGraph {
